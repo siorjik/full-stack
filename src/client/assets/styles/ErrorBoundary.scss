@@ -1,0 +1,12 @@
+.error-boundary {
+  display: flex;
+  justify-content: center;
+  min-height: 500px;
+
+  span {
+    color: orangered;
+    font-size: 25px;
+    font-weight: bold;
+    align-self: center;
+  }
+}
