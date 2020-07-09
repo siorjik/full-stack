@@ -4,4 +4,7 @@ export default {
 
   fetchOneStart: { fetchOne: true, fetchedOne: false },
   fetchOneFinished: { fetchOne: false, fetchedOne: true },
+
+  fetchSessionStart: { fetchSession: true, fetchedSession: false },
+  fetchSessionFinished: { fetchSession: false, fetchedSession: true },
 };

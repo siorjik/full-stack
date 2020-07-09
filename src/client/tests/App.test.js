@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 
 import App from '../pages/App';
 import configureStore from '../store';

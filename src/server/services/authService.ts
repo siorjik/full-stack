@@ -5,16 +5,14 @@ class AuthService {
 
   constructor(private login?: string, private password?: string) {}
 
-  public setAuthToken = (login: string | undefined = this.login, password: string | undefined = this.password) =>
+  public setAuthToken = (login: string | undefined = this.login, password: string | undefined = this.password): string =>
     jwt.sign({ login, password }, this.jwtParam);
 
-  public getAuthToken = (token: string) => jwt.verify(token, this.jwtParam);
+  public parseAuthToken = (headers: { authorization: string }): any => {
+    const token = headers.authorization;
 
-  public checkAuthToken = (headers: { authorization?: string }) => {
-    if (headers.authorization) return true;
-
-    return false;
-  };
+    return token ? jwt.verify(token, this.jwtParam) : null;
+  }
 }
 
 export default AuthService;
