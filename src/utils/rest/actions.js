@@ -1,7 +1,7 @@
 import restTypes from './types';
 
 export default class RestActions {
-  constructor(source) {
+  constructor(source = null) {
     this.type = restTypes(source);
   }
 
@@ -17,16 +17,27 @@ export default class RestActions {
 
   fetchAllFinished = (data) => {
     return {
-    type: this.getActionType('fetchAllFinished'),
-    payload: { list: data },
-  }};
+      type: this.getActionType('fetchAllFinished'),
+      payload: { list: data },
+    }
+  };  
 
   fetchOneStart = () => ({ type: this.getActionType('fetchOneStart') });
 
   fetchOneFinished = (data) => {
     return {
-    type: this.getActionType('fetchOneFinished'),
-    payload: { data },
-  }};
+      type: this.getActionType('fetchOneFinished'),
+      payload: { data },
+    }
+  };
+
+  fetchSessionStart = () => ({ type: this.getActionType('fetchSessionStart') });
+  
+  fetchSessionFinished = (data) => {
+    return {
+      type: this.getActionType('fetchSessionFinished'),
+      payload: { data },
+    };
+  };
 }
 

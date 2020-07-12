@@ -1,7 +1,14 @@
-export default (source) => ({
-  fetchAllStart: `${source.toUpperCase()}_FETCH_ALL_START`,
-  fetchAllFinished: `${source.toUpperCase()}_FETCH_ALL_FINISHED`,
+const getTypeName = (str, source = null) => {
+  return source ? `${source.toUpperCase()}_${str}`: str;
+};
 
-  fetchOneStart: `${source.toUpperCase()}_FETCH_ONE_START`,
-  fetchOneFinished: `${source.toUpperCase()}_FETCH_ONE_FINISHED`,
+export default (source = null) => ({
+  fetchAllStart: getTypeName('FETCH_ALL_START', source),
+  fetchAllFinished: getTypeName('FETCH_ALL_FINISHED', source),
+
+  fetchOneStart: getTypeName('FETCH_ONE_START', source),
+  fetchOneFinished: getTypeName('FETCH_ONE_FINISHED', source),
+
+  fetchSessionStart: getTypeName('FETCH_SESSION_START'),
+  fetchSessionFinished: getTypeName('FETCH_SESSION_FINISHED'),
 });
