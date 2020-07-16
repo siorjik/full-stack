@@ -1,11 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 
 import SequelizeService from '../services/sequelizeService';
-import config from '../../utils/config';
 
-const { dbName, dbUser, dbPass, dbHost, dbDialect } = config;
-
-const sequelize: SequelizeService = new SequelizeService(dbName, dbUser, dbPass, dbHost, dbDialect);
+const sequelize: SequelizeService = new SequelizeService();
 
 export class Session extends Model {
   public sid!: string;
@@ -35,14 +32,6 @@ export const sessionMap = {
     type: new DataTypes.STRING(128),
   },
   data: new DataTypes.STRING(50000),
-  createdAt: {
-    type: DataTypes.DATE,
-    allowNull: true,
-  },
-  updatedAt: {
-    type: DataTypes.DATE,
-    allowNull: true,
-  },
 };
 
 export const sessionInit = () => {
