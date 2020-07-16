@@ -1,11 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 
 import SequelizeService from '../services/sequelizeService';
-import config from '../../utils/config';
 
-const { dbName, dbUser, dbPass, dbHost, dbDialect } = config;
-
-const sequelize: SequelizeService = new SequelizeService(dbName, dbUser, dbPass, dbHost, dbDialect);
+const sequelize: SequelizeService = new SequelizeService();
 
 export class User extends Model {
   public id!: number;
@@ -46,14 +43,6 @@ export const userInit = () => {
         type: new DataTypes.STRING(128),
         allowNull: false,
       },
-      createdAt: {
-        type: DataTypes.DATE,
-        allowNull: true,
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: true,
-      }
     },
     {
       tableName: 'users',
