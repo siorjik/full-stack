@@ -66,3 +66,14 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+----------------------------------------------------------------------------------------------------------------------------------
+## Migrations and seeds
+
+Go to 'server' folder, and сreate 'migrations' and 'seeders' folders, also 'config' folders with config file.
+
+### `links`:
+
+https://medium.com/@reyhanhamidi/sequelize-automatic-database-migration-and-seeding-on-heroku-fb88cf09573b
+https://sequelize.readthedocs.io/en/latest/docs/migrations/
+https://sequelize.org/master/manual/migrations.html
