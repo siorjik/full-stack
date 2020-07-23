@@ -6,7 +6,6 @@ import App from '../pages/App';
 import configureStore from '../store';
 
 const store = configureStore();
-const props = { location: {} }
 
 /*test('renders learn react link', () => {
   const { getByText } = render(<App />);
@@ -14,7 +13,7 @@ const props = { location: {} }
   expect(linkElement).toBeInTheDocument();
 });*/
 describe('App rendering', () => {
-  const appComponent = shallow(<App.WrappedComponent store={store} { ...props } />);
+  const appComponent = shallow(<App.WrappedComponent store={store} />);
   //console.log(appComponent.debug());
 
   it('checking div length', () => {
