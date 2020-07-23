@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 import App from '../pages/App';
@@ -21,7 +21,8 @@ const Router = ({ isSession }) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/"><App /></Route>
+        <Route exact path="/"><Redirect to={userPath} /></Route>
+        <Route exact path="/app"><App /></Route>
         <Route exact path={userPath}><User /></Route>
         <Route exact path={loginPath}><Login /></Route>
         <Route exact path="*"><User /></Route>
