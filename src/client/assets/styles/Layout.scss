@@ -1,0 +1,45 @@
+.main-wrap {
+  display: flex;
+
+  .side-bar {
+    width: 20%;
+    background-color: beige;
+    padding: 10px;
+
+    a {
+      text-decoration: none;
+    }
+
+    .selected {
+      color: yellowgreen;
+    }
+  }
+
+  .content {
+    width: 80%;
+    background-color: whitesmoke;
+    padding: 10px;
+  }
+}
+
+.hide-menu {
+  .side-bar {
+    width: 5%;
+    transition: 2s;
+  }
+  .content {
+    width: 95%;
+    transition: 2s;
+  }
+}
+
+.show-menu {
+  .side-bar {
+    width: 20%;
+    transition: 2s;
+  }
+  .content {
+    width: 80%;
+    transition: 2s;
+  }
+}

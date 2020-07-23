@@ -26,7 +26,9 @@ export const checkSession = async(login: string, password: string) => {
     if (init) {
       const getRow = await Session.findAndCountAll({
         where: {
-          data: { [Op.substring]: login, [Op.substring]: password },        
+          data: {
+            [Op.and]: [{ [Op.substring]: login }, { [Op.substring]: password }],
+          },
         },
       });
 
