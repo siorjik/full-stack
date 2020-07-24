@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
 import { fetchSession } from '../../sagas/session';
-import { userPath } from '../../../utils/paths';
+import { usersPath } from '../../../utils/paths';
 
 const Login = (props) => {
   const { fetchSession, session, history } = props;
@@ -14,7 +14,7 @@ const Login = (props) => {
   useEffect(() => {
     const isSession = !!Object.keys(session.data).length;
 
-    if (isSession) history.push(userPath);
+    if (isSession) history.push(usersPath);
   }, [session.data, history]);
 
   const change = (e) => setForm({ ...form, [e.target.name]: e.target.value });

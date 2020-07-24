@@ -10,11 +10,11 @@ import { fetchUsers, fetchUser } from '../../sagas/user';
 const App = (props) => {
   const { fetchUsers, fetchUser, user } = props;
 
-  useEffect(() => {
+  /*useEffect(() => {
     fetchUsers();
     fetchUser(4);
     fetchUser(7);
-  }, []);
+  }, []);*/
 
   return (
     <Layout>
