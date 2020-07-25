@@ -9,7 +9,7 @@ import Login from '../pages/Login';
 import routerHOC from '../hoc/routerHOC';
 
 import {
-  userPath,
+  usersPath,
   loginPath
 } from '../../utils/paths';
 
@@ -21,9 +21,9 @@ const Router = ({ isSession }) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/"><Redirect to={userPath} /></Route>
+        <Route exact path="/"><Redirect to={usersPath} /></Route>
         <Route exact path="/app"><App /></Route>
-        <Route exact path={userPath}><User /></Route>
+        <Route exact path={usersPath}><User /></Route>
         <Route exact path={loginPath}><Login /></Route>
         <Route exact path="*"><User /></Route>
       </Switch>
