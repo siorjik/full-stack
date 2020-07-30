@@ -3,32 +3,61 @@
 
   .side-bar {
     width: 20%;
-    background-color: beige;
+    background-color: black;
     padding: 20px 30px;
+    height: 100vh;
+    font-size: 18px;
+    font-weight: bold;
 
     a {
       text-decoration: none;
+      color: wheat;
     }
 
     .selected {
-      color: yellowgreen;
+      text-shadow: 1px 1px 3px white, 0 0 1px white;
     }
   }
 
   .content {
     width: 80%;
-    background-color: whitesmoke;
     padding: 20px 30px;
+    z-index: 1;
+    height: 100vh;
+
+    button {
+      border: none;
+      background: transparent;
+      outline: none;
+
+      .side-bar-toggle {
+        font-size: 25px;
+      }
+    }
+
+    &-container {
+      margin-top: 20px;
+
+      .list-wrap {
+        .ant-list-item {
+          cursor: pointer;
+
+          .list-item {
+            width: 100%;
+          }
+        }
+      }
+    }
   }
 }
 
 .hide-menu {
   .side-bar {
-    width: 5%;
+    width: 6%;
     transition: 2s;
   }
   .content {
-    width: 95%;
+    width: 94%;
     transition: 2s;
   }
 }
