@@ -2,18 +2,28 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
+import { Card } from 'antd';
 
 import { fetchUser } from '../../../sagas/user';
 
 const Info = (props) => {
-  const { match: { params }, fetchUser} = props;
+  const { match: { params }, fetchUser, user: { data }} = props;
 
   useEffect(() => {
     fetchUser(params.id);
   }, []);
 
   return (
-    <h2>User Info</h2>
+    <>
+      {
+        !!Object.keys(data).length &&
+        <Card title={<h3>User Info</h3>}>
+          <p>First name: {data.firstName}</p>
+          <p>Last name: {data.lastName}</p>
+          <p>Login: {data.login}</p>
+        </Card>
+      }
+    </>
   )
 };
 

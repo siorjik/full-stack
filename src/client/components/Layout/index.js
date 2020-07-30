@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 
 import SideBar from './SideBar';
 
@@ -18,7 +19,7 @@ const Layout = (props) => {
       <SideBar />
       
       <main className="content">
-        <button onClick={toggleMenu}>hide/show</button>
+        <button onClick={toggleMenu}>{isHide ? <MenuUnfoldOutlined className="side-bar-toggle" /> : <MenuFoldOutlined className="side-bar-toggle" />}</button>
         {props.children}
       </main>
     </div>

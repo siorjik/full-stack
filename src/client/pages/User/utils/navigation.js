@@ -2,7 +2,7 @@ import { getUserPath, getUserEntitiesPath, usersPath } from '../../../../utils/p
 
 export default (id = null) => [
   {
-    title: 'List',
+    title: 'Users',
     path: usersPath,
   },
   {

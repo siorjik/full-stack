@@ -14,9 +14,11 @@ import navigation from './utils/navigation';
 import { usersPath, userPath, userEntitiesPath } from '../../../utils/paths';
 
 const User = (props) => {
+  const { user: { data }} = props;
+
   const getContent = (Comp) => (
     <>
-      <Navigation navigationData={navigation(6)} />
+      <Navigation navigationData={navigation(data.id)} />
       {Comp}
     </>
   );
