@@ -7,7 +7,7 @@ import { Card } from 'antd';
 import { fetchUser } from '../../../sagas/user';
 
 const Info = (props) => {
-  const { match: { params }, fetchUser, user: { data }} = props;
+  const { match: { params }, fetchUser, user: { data } } = props;
 
   useEffect(() => {
     fetchUser(params.id);
@@ -17,7 +17,7 @@ const Info = (props) => {
     <>
       {
         !!Object.keys(data).length &&
-        <Card title={<h3>User Info</h3>}>
+        <Card title="User info">
           <p>First name: {data.firstName}</p>
           <p>Last name: {data.lastName}</p>
           <p>Login: {data.login}</p>

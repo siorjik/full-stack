@@ -16,6 +16,7 @@
 
     .selected {
       text-shadow: 1px 1px 3px white, 0 0 1px white;
+      font-size: 20px;
     }
   }
 
@@ -24,15 +25,11 @@
     padding: 20px 30px;
     z-index: 1;
     height: 100vh;
+    background: white;
 
-    button {
-      border: none;
-      background: transparent;
-      outline: none;
-
-      .side-bar-toggle {
-        font-size: 25px;
-      }
+    &-header {
+      display: flex;
+      justify-content: space-between;
     }
 
     &-container {

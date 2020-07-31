@@ -4,9 +4,10 @@ import { shallow } from 'enzyme';
 import Layout from '../../components/Layout';
 
 let comp;
+const props = { history: {} };
 
 beforeEach(() => {
-  comp = shallow(<Layout />);
+  comp = shallow(<Layout.WrappedComponent { ...props } />);
 });
 
 it('should exist and has a child', () => {
@@ -18,8 +19,7 @@ it('work with state and onClick', () => {
   const setState = jest.fn();
   const spy = jest.spyOn(React, "useState").mockImplementation((init) => [init, setState]);
 
-  const btn = comp.childAt(1).find('button');
-
+  const btn = comp.childAt(1).find('button').first();
   jest.spyOn(Storage.prototype, 'setItem');
 
   btn.onClick = spy();

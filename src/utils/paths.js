@@ -8,13 +8,14 @@ export const getUserPath = (id) => `/user/${id}`;
 export const getUserEntitiesPath = (id) => `/user/${id}/entities`;
 
 export const loginPath = '/login';
+export const profilePath = '/profile';
 
 //--------------- Api paths
 const apiPath = config.apiPath;
 
 // user
 export const fetchUsersPath = `${apiPath}/user`;
-export const fetchUserPath = id => `${fetchUsersPath}/${id}`;
+export const getUserPathApi = id => `${fetchUsersPath}/${id}`;
 
 // session
 export const fetchSessionPath = `${apiPath}/session`;

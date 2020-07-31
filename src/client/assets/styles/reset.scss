@@ -12,6 +12,16 @@ body {
   button {
     cursor: pointer;
   }
+
+  .icon-btn {
+    border: none;
+    background: transparent;
+    outline: none;
+
+    span {
+      font-size: 22px;
+    }
+  }
 }
   
 code {

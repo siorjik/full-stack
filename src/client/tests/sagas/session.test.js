@@ -9,7 +9,7 @@ jest.mock('axios');
 it('fetch session', async() => {
   const dispatched = [];
 
-  const apiResult = { data: { user: { id: 2 }}};
+  const apiResult = { data: { user: { id: 2 } } };
 
   const request = axios.post.mockResolvedValue(apiResult);
 

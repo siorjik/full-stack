@@ -3,7 +3,7 @@ import { takeEvery, put, call } from 'redux-saga/effects';
 import restTypes from '../../utils/rest/types';
 import {
   fetchUsersPath,
-  fetchUserPath,
+  getUserPathApi,
 } from '../../utils/paths';
 
 import {
@@ -11,6 +11,8 @@ import {
   fetchUsersFinished,
   fetchUserStart,
   fetchUserFinished,
+  updateUserStart,
+  updateUserFinished,
 } from '../actions/user';
 
 import apiRequest from '../../utils/rest/apiRequest';
@@ -18,6 +20,7 @@ import apiRequest from '../../utils/rest/apiRequest';
 const {
   fetchAllStart,
   fetchOneStart,
+  updateOneStart,
 } = restTypes('user');
 
 const params = {};
@@ -48,7 +51,7 @@ export const fetchUser = id => {
   return fetchUserStart();
 };
 
-const getUserData = () => apiRequest('get', fetchUserPath(params.id), 'user');
+const getUserData = () => apiRequest('get', getUserPathApi(params.id), 'user');
 
 export function* fetchUserWorker() {
   const user = yield call(getUserData);
@@ -58,4 +61,24 @@ export function* fetchUserWorker() {
 
 export function* fetchUserWatcher() {
   yield takeEvery(fetchOneStart, fetchUserWorker);
+};
+
+//update user
+export const updateUser = (id, data) => {
+  params.id = id;
+  params.data = data;
+
+  return updateUserStart();
+};
+
+const getUpdateUser = () => apiRequest('put', getUserPathApi(params.id), 'user', params.data);
+
+export function* updateUserWorker() {
+  const user = yield call(getUpdateUser);
+
+  yield put(updateUserFinished(user));
+};
+
+export function* updateUserWatcher() {
+  yield takeEvery(updateOneStart, updateUserWorker);
 };

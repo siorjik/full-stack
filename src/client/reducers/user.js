@@ -7,6 +7,8 @@ const {
   fetchAllFinished,
   fetchOneStart,
   fetchOneFinished,
+  updateOneStart,
+  updateOneFinished,
 } = restTypes('user');
 
 const {
@@ -14,6 +16,8 @@ const {
   fetchAllFinished: fetchAllFinishedState,
   fetchOneStart: fetchOneStartState,
   fetchOneFinished: fetchOneFinishedState,
+  updateOneStart: updateOneStartState,
+  updateOneFinished: updateOneFinishedState,
 } = restStates;
 
 export default (state = restInitialState, action = {}) => {
@@ -41,6 +45,19 @@ export default (state = restInitialState, action = {}) => {
       return {
         ...state,
         ...fetchOneFinishedState,
+        ...action.payload,
+      };
+
+    case updateOneStart:
+      return {
+        ...state,
+        ...updateOneStartState,
+      };
+
+    case updateOneFinished:
+      return {
+        ...state,
+        ...updateOneFinishedState,
         ...action.payload,
       };
 

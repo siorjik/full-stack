@@ -5,12 +5,14 @@ import { createBrowserHistory } from 'history';
 import App from '../pages/App';
 import User from '../pages/User';
 import Login from '../pages/Login';
+import Profile from '../pages/Profile';
 
 import routerHOC from '../hoc/routerHOC';
 
 import {
   usersPath,
-  loginPath
+  loginPath,
+  profilePath
 } from '../../utils/paths';
 
 const Router = ({ isSession }) => {
@@ -25,6 +27,7 @@ const Router = ({ isSession }) => {
         <Route exact path="/app"><App /></Route>
         <Route exact path={usersPath}><User /></Route>
         <Route exact path={loginPath}><Login /></Route>
+        <Route exact path={profilePath}><Profile /></Route>
         <Route exact path="*"><User /></Route>
       </Switch>
     </BrowserRouter>

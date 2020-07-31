@@ -3,6 +3,7 @@ import { all, fork } from 'redux-saga/effects';
 import {
   fetchUsersWatcher,
   fetchUserWatcher,
+  updateUserWatcher,
 } from './user';
 import { fetchSessionWatcher } from './session';
 
@@ -11,5 +12,6 @@ export default function* rootSaga() {
     fork(fetchUsersWatcher),
     fork(fetchUserWatcher),
     fork(fetchSessionWatcher),
+    fork(updateUserWatcher),
   ]);
 };
