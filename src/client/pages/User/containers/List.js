@@ -22,7 +22,7 @@ const UserList = (props) => {
         !!list.length &&
         <div className="list-wrap">
           <List
-            header={<h2>Users</h2>}
+            header={<h3>Users</h3>}
             bordered
             dataSource={list}
             renderItem={(item, index) => (

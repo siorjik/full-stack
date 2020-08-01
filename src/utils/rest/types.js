@@ -11,4 +11,7 @@ export default (source = null) => ({
 
   fetchSessionStart: getTypeName('FETCH_SESSION_START'),
   fetchSessionFinished: getTypeName('FETCH_SESSION_FINISHED'),
+
+  updateOneStart: getTypeName('UPDATE_ONE_START', source),
+  updateOneFinished: getTypeName('UPDATE_ONE_FINISHED', source),
 });

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { runSaga } from 'redux-saga';
 
-import { fetchUsersWorker, fetchUserWorker } from '../../sagas/user';
+import { fetchUsersWorker, fetchUserWorker, updateUserWorker } from '../../sagas/user';
 import initialState from '../../../utils/rest/initialState';
 
 jest.mock('axios');
@@ -13,7 +13,7 @@ beforeEach(() => {
 it('fetch users', async() => {
   const dispatched = [];
 
-  const apiResult = { data: { users: [1, 2] }};
+  const apiResult = { data: { users: [1, 2] } };
 
   const request = axios.get.mockResolvedValue(apiResult);
 
@@ -31,7 +31,7 @@ it('fetch users', async() => {
 it('fetch user', async() => {
   const dispatched = [];
 
-  const apiResult = { data: { user: { id: 1, name: 'test' } }};
+  const apiResult = { data: { user: { id: 1, name: 'test' } } };
 
   const request = axios.get.mockResolvedValue(apiResult);
 
@@ -41,6 +41,24 @@ it('fetch user', async() => {
   };
 
   await runSaga(store, fetchUserWorker).toPromise();
+
+  expect(request).toHaveBeenCalledTimes(1);
+  expect(dispatched[0].payload.data).toEqual(apiResult.data.user);
+});
+
+it('update user', async() => {
+  const dispatched = [];
+
+  const apiResult = { data: { user: { id: 1, name: 'test' } } };
+
+  const request = axios.put.mockResolvedValue(apiResult);
+
+  const store = {
+    getState: () => ({ ...initialState }),
+    dispatch: action => dispatched.push(action),
+  };
+
+  await runSaga(store, updateUserWorker).toPromise();
 
   expect(request).toHaveBeenCalledTimes(1);
   expect(dispatched[0].payload.data).toEqual(apiResult.data.user);

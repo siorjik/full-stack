@@ -31,6 +31,15 @@ export default class RestActions {
     }
   };
 
+  updateOneStart = () => ({ type: this.getActionType('updateOneStart') });
+
+  updateOneFinished = (data) => {
+    return {
+      type: this.getActionType('updateOneFinished'),
+      payload: { data },
+    }
+  };
+
   fetchSessionStart = () => ({ type: this.getActionType('fetchSessionStart') });
   
   fetchSessionFinished = (data) => {

@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
+import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
 
 import SideBar from './SideBar';
 
+import { profilePath } from '../../../utils/paths';
+
 const Layout = (props) => {
+  const { children, history } = props;
+
   const isHideMenuLocal = localStorage.getItem('isHideMenu'); 
   const [isHide, setHide] = useState(+isHideMenuLocal);
 
@@ -19,11 +25,18 @@ const Layout = (props) => {
       <SideBar />
       
       <main className="content">
-        <button onClick={toggleMenu}>{isHide ? <MenuUnfoldOutlined className="side-bar-toggle" /> : <MenuFoldOutlined className="side-bar-toggle" />}</button>
-        {props.children}
+        <div className="content-header">
+          <button className="icon-btn" onClick={toggleMenu}>{isHide ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}</button>
+          <button className="icon-btn" onClick={() => history.push(profilePath)}><UserOutlined /></button>
+        </div>
+        {children}
       </main>
     </div>
   );
 };
 
-export default Layout;
+Layout.propTypes = {
+  history: PropTypes.shape().isRequired,
+};
+
+export default withRouter(Layout);

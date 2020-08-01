@@ -8,6 +8,8 @@ const {
   fetchAllFinished,
   fetchOneStart,
   fetchOneFinished,
+  updateOneStart,
+  updateOneFinished,
 } = new RestActions('user');
 
 const {
@@ -15,6 +17,8 @@ const {
   fetchAllFinished: fetchAllFinishedState,
   fetchOneStart: fetchOneStartState,
   fetchOneFinished: fetchOneFinishedState,
+  updateOneStart: updateOneStartState,
+  updateOneFinished: updateOneFinishedState,
 } = restStates;
 
 describe('fetch users', () => {
@@ -47,6 +51,23 @@ describe('fetch user', () => {
       ...initialState,
       ...fetchOneFinishedState,
       ...fetchOneFinished().payload,
+    });
+  });
+});
+
+describe('update user', () => {
+  it('update user start', () => {
+    expect(reducer(initialState, updateOneStart())).toEqual({
+      ...initialState,
+      ...updateOneStartState,
+    });
+  });
+
+  it('update user finished', () => {
+    expect(reducer(initialState, updateOneFinished())).toEqual({
+      ...initialState,
+      ...updateOneFinishedState,
+      ...updateOneFinished().payload,
     });
   });
 });

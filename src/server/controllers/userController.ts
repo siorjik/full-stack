@@ -28,7 +28,13 @@ export const userUpdate = async(id: string, data: { firstName?: string, lastName
         { where: { id } }
       );
 
-      return userUpdate;
+      if (userUpdate) {
+        const user = await User.findByPk(id);
+
+        return { user };
+      } 
+      
+      return false;
     }
   } catch (error) {
     console.log(`error - ${error}`);

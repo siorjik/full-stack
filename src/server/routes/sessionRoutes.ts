@@ -8,7 +8,7 @@ const router: Router = Router();
 const authService: AuthService = new AuthService();
 
 router.post('/session', async(req: any, res: any, next: any) => {
-  const { data: { login, password }} = req.body;
+  const { data: { login, password } } = req.body;
   const { authorization } = req.headers;
   let user;
 
@@ -21,13 +21,13 @@ router.post('/session', async(req: any, res: any, next: any) => {
         req.session.login = login;
         req.session.password = password;
 
-        res.send({ user: { ...user?.toJSON(), token: jwtToken }});
+        res.send({ user: { ...user?.toJSON(), token: jwtToken } });
       } else res.status(404).send('user not found!');
     } else {
       getResponse(req, res, async({ login, password }) => {
         user = await getSessionUser(login, password);
 
-        if (user) res.send({ user: { ...user?.toJSON(), token: authorization }});
+        if (user) res.send({ user: { ...user?.toJSON(), token: authorization } });
       });
     }
   } catch (error) {

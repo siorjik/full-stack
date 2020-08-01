@@ -7,4 +7,7 @@ export default {
 
   fetchSessionStart: { fetchSession: true, fetchedSession: false },
   fetchSessionFinished: { fetchSession: false, fetchedSession: true },
+
+  updateOneStart: { updateOne: true, updatedOne: false },
+  updateOneFinished: { updateOne: false, updatedOne: true },
 };

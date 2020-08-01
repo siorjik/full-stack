@@ -30,7 +30,7 @@ describe('work with state and onChange', () => {
     const login = form.find('input[name="login"]');
     const loginValue = 'your login';
 
-    login.simulate('change', { target: { name: 'login', value: loginValue }});
+    login.simulate('change', { target: { name: 'login', value: loginValue } });
 
     React.useState(loginValue);
 
@@ -43,7 +43,7 @@ describe('work with state and onChange', () => {
     const pass = form.find('input[name="password"]');
     const passValue = 'your password';
 
-    pass.simulate('change', { target: { name: 'password', value: passValue }});
+    pass.simulate('change', { target: { name: 'password', value: passValue } });
 
     React.useState(passValue);
     React.useState(passValue);
