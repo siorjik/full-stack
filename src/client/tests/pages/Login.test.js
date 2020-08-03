@@ -55,7 +55,7 @@ describe('work with state and onChange', () => {
 });
 
 it('submit', () => {
-  const btn = form.find('input[type="submit"]');
+  const btn = form.find('button[type="submit"]');
   const click = comp.prop('fetchSession');
 
   form.simulate('submit');
