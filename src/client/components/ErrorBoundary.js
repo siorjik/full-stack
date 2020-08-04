@@ -30,7 +30,7 @@ class ErrorBoundary extends Component {
 
   getErrorTemplate = () => (
     <div className="error-boundary">
-      <span>Sorry, something broke...</span>
+      <span>Sorry, something broken...</span>
     </div>
   )
 

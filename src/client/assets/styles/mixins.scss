@@ -1,0 +1,31 @@
+@for $i from 1 through 100 {
+  .height-#{$i}-vh {
+    height: $i + vh;
+  }
+
+  .width-#{$i}-percent {
+    width: $i * 1%;
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.justify {
+  &-center {
+    justify-content: center;
+  }
+}
+
+.align {
+  &-center {
+    align-items: center;
+  }
+}
+
+.text {
+  &-center {
+    text-align: center;
+  }
+}

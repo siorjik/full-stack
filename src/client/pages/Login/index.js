@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
+import Form from '../../components/Form';
+
 import { fetchSession } from '../../sagas/session';
 import { usersPath } from '../../../utils/paths';
 
@@ -17,20 +19,37 @@ const Login = (props) => {
     if (isSession) history.push(usersPath);
   }, [session.data, history]);
 
-  const change = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const onChange = (name, value) => setForm({ ...form, [name]: value });
 
-  const submit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     fetchSession(form.login, form.password);
-  }
+  };
+
+  const formData = [
+    {
+      label: 'Login',
+      type: 'text',
+      name: 'login',
+      value: form.login,
+      fieldClass: 'field',
+      labelClass: 'label top',
+      required: true,
+    },
+    {
+      label: 'Password',
+      type: 'password',
+      name: 'password',
+      value: form.password,
+      fieldClass: 'field',
+      labelClass: 'label top',
+      required: true,
+    },
+  ];
 
   return (
-    <div>
-      <form onSubmit={submit}>
-        <label>Login <input name="login" type="text" onChange={change} value={form.login} /></label>
-        <label>Password <input name="password" type="password" onChange={change} value={form.password} /></label>
-        <input type="submit" value="Submit" />
-      </form>
+    <div className="height-100-vh flex justify-center align-center">
+      <Form data={formData} onChange={onChange} submit={onSubmit} formClass="width-30-percent text-center" />
     </div>
   );
 };

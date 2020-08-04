@@ -1,0 +1,27 @@
+.field {
+  border-radius: 2px;
+  border: 1px solid #d9d9d9;
+  height: 30px;
+  outline: none;
+  padding: 5px 11px;
+  margin: 0 auto 20px auto;
+  display: block;
+  width: 100%;
+}
+
+.label {
+  color: rgba(0, 0, 0, .85);
+
+  &.top {
+    span {
+      display: block;
+      text-align: center;
+      width: 100%;
+
+      .required {
+        display: inline;
+        color: red;
+      }
+    }
+  }
+}
