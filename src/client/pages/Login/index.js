@@ -48,8 +48,8 @@ const Login = (props) => {
   ];
 
   return (
-    <div className="login-wrap">
-      <Form data={formData} onChange={onChange} submit={onSubmit} formClass="login-form" />
+    <div className="height-100-vh flex justify-center align-center">
+      <Form data={formData} onChange={onChange} submit={onSubmit} formClass="width-30-percent text-center" />
     </div>
   );
 };

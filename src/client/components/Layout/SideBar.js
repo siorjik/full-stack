@@ -5,7 +5,7 @@ import { Row, Col } from 'antd';
 import { usersPath } from '../../../utils/paths';
 
 export default () => (
-  <aside className="side-bar">
+  <aside className="height-100-vh side-bar">
     <Row>
       <Col span={24}><NavLink activeClassName="selected" to="/app">App</NavLink></Col>
       <Col span={24}><NavLink activeClassName="selected" to={usersPath}>User</NavLink></Col>

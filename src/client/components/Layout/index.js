@@ -24,7 +24,7 @@ const Layout = (props) => {
     <div className={`main-wrap ${isHide ? 'hide-menu' : 'show-menu'}`}>
       <SideBar />
       
-      <main className="content">
+      <main className="height-100-vh content">
         <div className="content-header">
           <button className="icon-btn" onClick={toggleMenu}>{isHide ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}</button>
           <button className="icon-btn" onClick={() => history.push(profilePath)}><UserOutlined /></button>
