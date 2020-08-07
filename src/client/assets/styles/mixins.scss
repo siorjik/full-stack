@@ -1,10 +1,30 @@
-@for $i from 1 through 100 {
+@for $i from 1 through 300 {
   .height-#{$i}-vh {
     height: $i + vh;
   }
 
   .width-#{$i}-percent {
     width: $i * 1%;
+
+    &-min {
+      min-width: $i * 1%;
+    }
+
+    &-max {
+      max-width: $i * 1%;
+    }
+  }
+
+  .width-#{$i} {
+    width: $i + px;
+
+    &-min {
+      min-width: $i + px;
+    }
+
+    &-max {
+      max-width: $i + px;
+    }
   }
 }
 
