@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ErrorField from './ErrorField';
+
 const Field = (props) => {
   const {
     label,
@@ -11,19 +13,27 @@ const Field = (props) => {
     fieldClass,
     labelClass,
     required,
+    errors,
   } = props;
 
+  const change = ({ target: { name, value } }) => onChange(name, value);
+
   return (
-    <label className={labelClass}>
-      <span>{label} {required && <span className="required">*</span>}</span>
-      <input
-        className={fieldClass}
-        type={type}
-        name={name}
-        value={value}
-        onChange={({ target: { name, value } }) => onChange(name, value)}
-      />
-    </label>
+    <>
+      <label className={labelClass}>
+        <span>{label} {required && <span className="required">*</span>}</span>
+        <input
+          className={fieldClass}
+          type={type}
+          name={name}
+          value={value}
+          onChange={({ target: { name, value } }) => onChange(name, value)}
+          //onCange={change}
+        />
+      </label>
+
+      {!!errors.length && <ErrorField errors={errors} />}
+    </>
   )
 };
 
@@ -36,6 +46,7 @@ Field.propTypes = {
   labelClass: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
+  errors: PropTypes.arrayOf(PropTypes.shape())
 };
 
 Field.defaultProps = {
@@ -47,6 +58,7 @@ Field.defaultProps = {
   labelClass: '',
   onChange: null,
   required: false,
+  errors: [],
 };
 
 export default Field;

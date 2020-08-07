@@ -7,11 +7,14 @@ import Form from '../../components/Form';
 
 import { fetchSession } from '../../sagas/session';
 import { usersPath } from '../../../utils/paths';
+import getValidations from '../../../utils/helpers/getValidations';
+import validations from './utils/validations';
 
 const Login = (props) => {
   const { fetchSession, session, history } = props;
 
   const [form, setForm] = useState({ login: '', password: '' });
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const isSession = !!Object.keys(session.data).length;
@@ -19,11 +22,20 @@ const Login = (props) => {
     if (isSession) history.push(usersPath);
   }, [session.data, history]);
 
-  const onChange = (name, value) => setForm({ ...form, [name]: value });
+  const onChange = (name, value) => {
+    setForm({ ...form, [name]: value });
+    setErrors({});
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    fetchSession(form.login, form.password);
+
+    const errs = getValidations(validations, form);
+
+    if(Object.keys(errs).length) {
+      setErrors(errs);
+      return false;
+    } else fetchSession(form.login, form.password);
   };
 
   const formData = [
@@ -35,6 +47,7 @@ const Login = (props) => {
       fieldClass: 'field',
       labelClass: 'label top',
       required: true,
+      errors: errors.login,
     },
     {
       label: 'Password',
@@ -44,12 +57,13 @@ const Login = (props) => {
       fieldClass: 'field',
       labelClass: 'label top',
       required: true,
+      errors: errors.password,
     },
   ];
 
   return (
     <div className="height-100-vh flex justify-center align-center">
-      <Form data={formData} onChange={onChange} submit={onSubmit} formClass="width-30-percent text-center" />
+      <Form data={formData} onChange={onChange} submit={onSubmit} formClass="width-30-percent width-300-max text-center" />
     </div>
   );
 };

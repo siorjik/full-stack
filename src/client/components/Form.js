@@ -11,7 +11,16 @@ const Form = (props) => {
     <form className={formClass} onSubmit={submit}>
       {
         data.map((item, index) => {
-          const { label, type, name, value, fieldClass, labelClass, required } = item;
+          const {
+            label,
+            type,
+            name,
+            value,
+            fieldClass,
+            labelClass,
+            required,
+            errors,
+          } = item;
 
           return (
             <Fragment key={+index}>
@@ -24,6 +33,7 @@ const Form = (props) => {
                 fieldClass={fieldClass}
                 labelClass={labelClass}
                 required={required}
+                errors={errors}
               />
             </Fragment>
           );
