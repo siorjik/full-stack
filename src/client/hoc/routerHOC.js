@@ -6,11 +6,7 @@ import setAuthToken from '../../utils/helpers/setAuthToken';
 
 const routerHOC = (Comp) => {
   class RouterWrapper extends Component {
-    constructor(props) {
-      super(props);
-
-      this.localeStorageToken = localStorage.getItem('token') || null;
-    }
+    localeStorageToken = localStorage.getItem('token') || null;
 
     componentDidMount() {
       if(this.localeStorageToken) {
