@@ -18,7 +18,9 @@ import {
 const Router = ({ isSession }) => {
   const { push } = createBrowserHistory();
 
-  if (!isSession) push(loginPath);
+  const isToken = localStorage.getItem('token');
+
+  if (!isSession && !isToken) push(loginPath);
 
   return (
     <BrowserRouter>

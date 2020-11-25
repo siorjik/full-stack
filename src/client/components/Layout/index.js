@@ -10,11 +10,11 @@ import { profilePath } from '../../../utils/paths';
 const Layout = (props) => {
   const { children, history } = props;
 
-  const isHideMenuLocal = localStorage.getItem('isHideMenu'); 
-  const [isHide, setHide] = useState(+isHideMenuLocal);
+  const isHideMenuLocal = JSON.parse(localStorage.getItem('isHideMenu'));
+  const [isHide, setHide] = useState(isHideMenuLocal);
 
   const toggleMenu = () => {
-    const value = isHide ? 0 : 1;
+    const value = isHide ? false : true;
 
     setHide(value);
     localStorage.setItem('isHideMenu', value);

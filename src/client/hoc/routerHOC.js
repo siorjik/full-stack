@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchSession } from '../sagas/session';
@@ -24,13 +24,7 @@ const routerHOC = (Comp) => {
 
       const isSession = !!Object.keys(data).length;
 
-      return (
-        <Fragment>
-          {this.localeStorageToken ?
-            isSession && <Comp isSession={isSession} { ...this.props } /> :
-            <Comp isSession={isSession} { ...this.props } />}
-        </Fragment>
-      );
+      return <Comp isSession={isSession} { ...this.props } />;
     }
   }
 
