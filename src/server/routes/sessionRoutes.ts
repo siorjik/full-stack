@@ -2,21 +2,19 @@ import { Router } from 'express';
 
 import AuthService from '../services/authService';
 import { getSessionUser } from '../controllers/sessionController';
-import getResponse from '../../utils/helpers/getResponse';
+import auth from '../../utils/helpers/auth';
 
 const router: Router = Router();
 const authService: AuthService = new AuthService();
 
-router.post('/session', async(req: any, res: any, next: any) => {
-  const { data: { login, password } } = req.body;
+router.post('/session', auth, async(req: any, res: any) => {
   const { authorization } = req.headers;
+  const { login, password, isAuth } = req.userData;
   let user;
-
   try {
-    if (login && password) {
+    if (!isAuth) {
       user = await getSessionUser(login, password);
       const jwtToken = authService.setAuthToken(login, password);
-
       if (user) {
         req.session.login = login;
         req.session.password = password;
@@ -24,11 +22,9 @@ router.post('/session', async(req: any, res: any, next: any) => {
         res.send({ user: { ...user?.toJSON(), token: jwtToken } });
       } else res.status(404).send('user not found!');
     } else {
-      getResponse(req, res, async({ login, password }) => {
-        user = await getSessionUser(login, password);
+      user = await getSessionUser(login, password);
 
-        if (user) res.send({ user: { ...user?.toJSON(), token: authorization } });
-      });
+      if (user) res.send({ user: { ...user?.toJSON(), token: authorization } });
     }
   } catch (error) {
     res.send(`error - ${error.message}`);

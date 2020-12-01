@@ -1,69 +1,59 @@
 import { Router } from 'express';
 
 import { userCreate, userUpdate, userDelete, getUser, getUsers } from '../controllers/userController';
-import getResponse from '../../utils/helpers/getResponse';
+import auth from '../../utils/helpers/auth';
 
 const router: Router = Router();
 
-router.post('/user', async(req: any, res: any, next: any) => {
+router.post('/user', auth, async(req: any, res: any) => {
   const { data } = req.body;
 
   try {
-    getResponse(req, res, async () => {
-      const result = await userCreate(data);
-      res.send(result);
-    });
+    const result = await userCreate(data);
+    res.send(result);
   } catch (error) {
     res.send(`error - ${error.message}`);
   }
 });
 
-router.put('/user/:id', async(req: any, res: any, next: any) => {
+router.put('/user/:id', auth, async(req: any, res: any) => {
   const { id } = req.params;
   const { data } = req.body;
 
   try {
-    getResponse(req, res, async () => {
-      const result = await userUpdate(id, data);
-      res.send(result);
-    });
+    const result = await userUpdate(id, data);
+    res.send(result);
   } catch (error) {
     res.send(`error - ${error.message}`);
   }
 });
 
-router.delete('/user/:id', async(req: any, res: any, next: any) => {
+router.delete('/user/:id', auth, async(req: any, res: any) => {
   const { id } = req.params;
 
   try {
-    getResponse(req, res, async () => {
-      await userDelete(id);
-      res.send(true);
-    });
+    await userDelete(id);
+    res.send(true);
   } catch (error) {
     res.send(`error - ${error.message}`);
   }
 });
 
-router.get('/user/:id', (req: any, res: any, next: any) => {
+router.get('/user/:id', auth, async(req: any, res: any) => {
   const { id } = req.params;
     
   try {
-    getResponse(req, res, async () => {
-      const user = await getUser(id);
-      res.send({ user });
-    });
+    const user = await getUser(id);
+    res.send({ user });
   } catch (error) {
     res.send(`error - ${error}`);
   }
 });
 
-router.get('/user', async(req: any, res: any, next: any) => {
+router.get('/user', auth, async(req: any, res: any) => {
   try {
-    getResponse(req, res, async () => {  
-      const users = await getUsers();
-      res.send({ users });
-    });
+    const users = await getUsers();
+    res.send({ users });
   } catch (error) {
     res.send(`error - ${error}`);
   }
