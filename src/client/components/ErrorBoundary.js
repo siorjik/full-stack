@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class ErrorBoundary extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       hasErr: false,
@@ -25,6 +25,9 @@ class ErrorBoundary extends Component {
     return resp;
   }, (error) => {
     this.setState({ hasErr: true });
+
+    if (error.response.status === 403) localStorage.clear();
+
     return Promise.reject(error);
   });
 

@@ -10,22 +10,19 @@ const authService: AuthService = new AuthService();
 router.post('/session', auth, async(req: any, res: any) => {
   const { authorization } = req.headers;
   const { login, password, isAuth } = req.userData;
-  let user;
+  const user = await getSessionUser(login, password);
+
   try {
     if (!isAuth) {
-      user = await getSessionUser(login, password);
-      const jwtToken = authService.setAuthToken(login, password);
       if (user) {
+        const jwtToken = authService.setAuthToken(login, password);
+
         req.session.login = login;
         req.session.password = password;
 
         res.send({ user: { ...user?.toJSON(), token: jwtToken } });
       } else res.status(404).send('user not found!');
-    } else {
-      user = await getSessionUser(login, password);
-
-      if (user) res.send({ user: { ...user?.toJSON(), token: authorization } });
-    }
+    } else res.send({ user: { ...user?.toJSON(), token: authorization } });
   } catch (error) {
     res.send(`error - ${error.message}`);
   }
