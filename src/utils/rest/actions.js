@@ -48,5 +48,7 @@ export default class RestActions {
       payload: { data },
     };
   };
+
+  deleteSession = () => ({ type: this.getActionType('deleteSession') });
 }
 

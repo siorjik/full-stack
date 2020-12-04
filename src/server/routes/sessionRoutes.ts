@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import AuthService from '../services/authService';
-import { getSessionUser } from '../controllers/sessionController';
+import { getSessionUser, deleteSession } from '../controllers/sessionController';
 import auth from '../../utils/helpers/auth';
 
 const router: Router = Router();
@@ -23,6 +23,18 @@ router.post('/session', auth, async(req: any, res: any) => {
         res.send({ user: { ...user?.toJSON(), token: jwtToken } });
       } else res.status(404).send('user not found!');
     } else res.send({ user: { ...user?.toJSON(), token: authorization } });
+  } catch (error) {
+    res.send(`error - ${error.message}`);
+  }
+});
+
+router.delete('/session', auth, async(req: any, res: any) => {
+  const { login, password } = req.userData;
+
+  try {
+    await deleteSession(login, password);
+
+    res.send({ message: 'session was deleted' });
   } catch (error) {
     res.send(`error - ${error.message}`);
   }

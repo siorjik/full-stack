@@ -2,7 +2,7 @@ const getValidationData = (pattern, data) => {
   const arr = [];
 
   Object.keys(pattern).forEach((key) => {
-    for(let [prop, value] of Object.entries(pattern[key])) {
+    for(let [, value] of Object.entries(pattern[key])) {
       Object.keys(data).map((dataKey) => {
         if (dataKey === key) {
           return arr.push({ ...value, value: data[dataKey], name: dataKey });
@@ -33,6 +33,8 @@ export default (validations, state) => {
     }
 
     Object.keys(obj).forEach(key => !obj[key].length && delete obj[key]);
+
+    return null;
   });
 
   return obj;
