@@ -18,7 +18,11 @@ sequelize.checkConnection();
 
 // initialization sequelize store
 sequelize.sequelizeClass.define('sessions', sessionMap);
-const myStore = new SequelizeStore({ db: sequelize.sequelizeClass, table: 'sessions' });
+const myStore = new SequelizeStore({
+  db: sequelize.sequelizeClass,
+  table: 'sessions',
+  expiration: 1000 * 60 * 60,
+});
 myStore.sync();
 
 const sessionStorage = {

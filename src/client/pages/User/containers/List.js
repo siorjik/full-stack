@@ -12,7 +12,7 @@ const UserList = (props) => {
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [fetchUsers]);
 
   const getUser = (id) => history.push(getUserPath(id));
 

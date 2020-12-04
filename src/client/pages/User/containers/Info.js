@@ -11,7 +11,7 @@ const Info = (props) => {
 
   useEffect(() => {
     fetchUser(params.id);
-  }, []);
+  }, [params.id, fetchUser]);
 
   return (
     <>

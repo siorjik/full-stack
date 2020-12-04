@@ -16,23 +16,22 @@ const Field = (props) => {
     errors,
   } = props;
 
-  const change = ({ target: { name, value } }) => onChange(name, value);
+  const isErr = !!errors.length;
 
   return (
     <>
       <label className={labelClass}>
         <span>{label} {required && <span className="required">*</span>}</span>
         <input
-          className={fieldClass}
+          className={`${fieldClass} ${isErr && 'error'}`}
           type={type}
           name={name}
           value={value}
           onChange={({ target: { name, value } }) => onChange(name, value)}
-          //onCange={change}
         />
       </label>
 
-      {!!errors.length && <ErrorField errors={errors} />}
+      {isErr && <ErrorField errors={errors} />}
     </>
   )
 };

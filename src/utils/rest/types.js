@@ -1,17 +1,18 @@
-const getTypeName = (str, source = null) => {
+const getTypeName = (source = null, str) => {
   return source ? `${source.toUpperCase()}_${str}`: str;
 };
 
 export default (source = null) => ({
-  fetchAllStart: getTypeName('FETCH_ALL_START', source),
-  fetchAllFinished: getTypeName('FETCH_ALL_FINISHED', source),
+  fetchAllStart: getTypeName(source, 'FETCH_ALL_START' ),
+  fetchAllFinished: getTypeName(source, 'FETCH_ALL_FINISHED'),
 
-  fetchOneStart: getTypeName('FETCH_ONE_START', source),
-  fetchOneFinished: getTypeName('FETCH_ONE_FINISHED', source),
+  fetchOneStart: getTypeName(source, 'FETCH_ONE_START'),
+  fetchOneFinished: getTypeName(source, 'FETCH_ONE_FINISHED'),
 
-  fetchSessionStart: getTypeName('FETCH_SESSION_START'),
-  fetchSessionFinished: getTypeName('FETCH_SESSION_FINISHED'),
+  fetchSessionStart: getTypeName(source, 'FETCH_SESSION_START'),
+  fetchSessionFinished: getTypeName(source, 'FETCH_SESSION_FINISHED'),
+  deleteSession: getTypeName(source, 'DELETE_SESSION'),
 
-  updateOneStart: getTypeName('UPDATE_ONE_START', source),
-  updateOneFinished: getTypeName('UPDATE_ONE_FINISHED', source),
+  updateOneStart: getTypeName(source, 'UPDATE_ONE_START'),
+  updateOneFinished: getTypeName(source, 'UPDATE_ONE_FINISHED'),
 });

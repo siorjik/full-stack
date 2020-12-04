@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
@@ -7,15 +7,7 @@ import Layout from '../../components/Layout';
 
 import { fetchUsers, fetchUser } from '../../sagas/user';
 
-const App = (props) => {
-  const { fetchUsers, fetchUser, user } = props;
-
-  /*useEffect(() => {
-    fetchUsers();
-    fetchUser(4);
-    fetchUser(7);
-  }, []);*/
-
+const App = () => {
   return (
     <Layout>
       <div className="App">

@@ -38,3 +38,23 @@ export const checkSession = async(login: string, password: string) => {
     console.error(`error - ${error}`);
   }
 };
+
+export const deleteSession = async(login: string, password: string) => {
+  try {
+    const init = await sessionInit();
+
+    if (init) {
+      const deleted = await Session.destroy({
+        where: {
+          data: {
+            [Op.and]: [{ [Op.substring]: login }, { [Op.substring]: password }],
+          },
+        },
+      });
+
+      return deleted;
+    } 
+  } catch (error) {
+    console.error(`error - ${error}`);
+  }
+};

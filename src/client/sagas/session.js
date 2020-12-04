@@ -10,16 +10,19 @@ import {
 import {
   fetchStart,
   fetchFinished,
+  deleteSession,
 } from '../actions/session';
 
 import apiRequest from '../../utils/rest/apiRequest';
 
 const {
   fetchSessionStart,
+  deleteSession: deleteSessionType,
 } = restTypes();
 
 const params = {};
 
+// fetch session
 export const fetchSession = (login, password) => {
   if (login && password) {
     params.login = login;
@@ -45,4 +48,21 @@ export function* fetchSessionWorker() {
 
 export function* fetchSessionWatcher() {
   yield takeEvery(fetchSessionStart, fetchSessionWorker);
+}
+
+// delete session
+export const removeSession = () => deleteSession();
+
+export const deleteSessionRequest = () => apiRequest('delete', fetchSessionPath);
+
+export function* deleteSessionWorker() {
+  try {
+    yield call(deleteSessionRequest); 
+  } catch (error) {
+    yield put(deleteSession(error));
+  }
+}
+
+export function* deleteSessionWatcher() {
+  yield takeEvery(deleteSessionType, deleteSessionWorker);
 }

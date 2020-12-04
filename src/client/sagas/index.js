@@ -5,7 +5,7 @@ import {
   fetchUserWatcher,
   updateUserWatcher,
 } from './user';
-import { fetchSessionWatcher } from './session';
+import { fetchSessionWatcher, deleteSessionWatcher } from './session';
 
 export default function* rootSaga() {
   yield all([
@@ -13,5 +13,6 @@ export default function* rootSaga() {
     fork(fetchUserWatcher),
     fork(fetchSessionWatcher),
     fork(updateUserWatcher),
+    fork(deleteSessionWatcher),
   ]);
 };
